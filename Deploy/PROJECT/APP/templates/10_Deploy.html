@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-image: url(https://c4.wallpaperflare.com/wallpaper/798/347/787/human-kidney-organ-of-the-human-body-wallpaper-preview.jpg);
+            
+        }
+        .container{
+            width: 400px;
+            height: 200px;
+            border-style: solid;
+            background-color: rgb(143, 141, 138, 0.3);
+        }
+        form{
+            margin-top: 50px;
+            margin-left: 40px;
+        }
+
+        .circle {
+  /* alignment */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -180px;
+  margin-left: 700px;
+  /* sizes */
+  height: 200px;
+  width: 250px;
+  border-radius: 100%;
+  /* colors */
+  background: linear-gradient(rgb(212, 31, 31), hsl(0, 0%, 0%));
+}
+
+.circle-score {
+  /* alignment */
+  margin-bottom: -60px;
+  /* font */
+  font-size: 70px;
+  font-weight: 800;
+  /* colors */
+  color: white;
+}
+
+
+
+
+</style>
+</head>
+<body>
+    <a class="back-button" href="{% url 'Home_4' %}" style="color: white;">
+        &lt;&nbsp;Home
+    </a>
+    <center><h1 style="color: rgb(255, 255, 255);">Kidney Disease Image Processing</h1><br><br><br>
+        <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p style="margin-right: 170px;">*  This field is requied</p>
+            {{ form.as_p }}
+            <input type="submit" Value='UPLOAD' style="margin-right: 230px;">
+        </form><br><br><br><br>
+        </div>
+    </center>
+    {% if obj %}
+    <center><br>
+        
+        <img src="{{ obj.image.url }}" height="200" width="350">
+        <div class="circle">
+        <div class="circle-score">
+            <h2 style="color: rgb(255, 246, 246); font-size: 30px;" >{{predict | upper}}<h2>
+        </div>
+        </div>
+    </center>
+    {% endif %}
+</body>
+</html>
